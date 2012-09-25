@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+  <!-- Marisa Rovereto
+     Introduction to Programming
+     September 26, 2012
+     Project 2 - My Adventure Game -->
+ 
+  <head>
+    <title>The Great Escape</title>
+    <style>
+      body {background:#A86483;}
+      h1 {font-family:"elephant";color:black;background-color:white;}
+      h2 {font-family:"comic_sans";color:orange;}
+      textarea {font-family:"times_new_roman";color:white;background-color:black;}
+      p {color:orange;}
+      a {color: white;}
+    </style>
+    <script type="text/JavaScript">
+      var HasVisitedNorth= false;
+      var HasVisitedSouth= false;
+      var HasVisitedWest= false;
+      var HasVisitedEast= false;
+      var score= 0;
+
+      
+      function btn() {
+        alert (score);
+      }
+
+      function north() {
+        var msg= "You walk down the steps. You reach the end of your sidewalk where the freindly bus driver waves you on and opens the door.";
+        alert (msg);
+	if(!HasVisitedNorth){
+	score=score+5;
+	HasVisitedNorth=true; 
+	}	 
+      }
+
+      function south() {
+        var msg= "Your mom is standing there giving you a stern look. She is blocking entrance to the house. 'You have to go to school,' says your mother.";
+        alert (msg);
+	if(!HasVisitedSouth){
+	score=score+5;
+	HasVisitedSouth=true; 
+	}
+      }
+
+      function east() {
+        var msg= "You walk into a tree in the yard with the tire swing dangling from a branch.";
+        alert (msg);
+	if(!HasVisitedEast){
+	score=score+5;
+	HasVisitedEast=true;
+	}
+      }
+
+      function west() {
+        var msg= "You look into the window of your living room, which is open slightly to let the cat in and out.";
+        alert (msg);
+	if(!HasVisitedWest){
+	score=score+5;
+	HasVisitedWest=true;
+	}
+      }
+
+    </script>
+  </head>
+    <body>
+      <h1>THE GREAT ESCAPE!</h1>
+    <br>
+      <h2>Welcome to my adventure game. 
+	    Today is the first day of kindergarten 
+	    and your character Johnny does not want to go. 
+	    What will you do to try and get away? 
+	    Let's find out if you can make 
+	    'The Great Escape!'</h2>
+
+    <br>
+      <textarea id="taGame" rows="8" cols="40">You are standing on the porch in front of your house.
+      </textarea>
+
+    <br>
+      <input type= "button"
+             value= "score"
+             onclick= "btn();">
+ 
+      <input type= "button"
+             value= "north"
+             onclick= "north();">
+
+      <input type= "button"
+             value= "south"
+             onclick= "south();">
+
+      <input type= "button"
+             value= "east"
+             onclick= "east();">
+
+      <input type= "button"
+             value= "west"
+             onclick= "west();">
+    
+      <p>Email me
+    	     <a href="mailto:missy.rovereto@gmail.com">here</a>
+      </p>
+    </body>
+</html>
