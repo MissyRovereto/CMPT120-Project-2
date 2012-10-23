@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+  <!-- Marisa Rovereto
+     Introduction to Programming
+     October 24, 2012
+     Project 3 - My Adventure Game -->
+ 
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>The Great Escape</title>
+    <style>
+      body {background:#A86483;}
+      h1 {font-family:"elephant";color:black;background-color:white;}
+      h2 {font-family:"comic_sans";color:orange;}
+      textarea {font-family:"times_new_roman";color:white;background-color:black;}
+      p {color:orange;}
+      a {color: white;}
+    </style>
+    <script type="text/JavaScript">
+      
+      var NORTH     = 1;
+      var SOUTH     = 2;
+      var EAST      = 3;
+      var WEST      = 4;
+      var currentLocation = 0;
+      
+      function showscore() {
+        alert (score);
+      }
+
+      function move (direction) {
+        if (direction===NORTH){
+           if (currentLocation==5){
+              currentLocation=3;
+              updateDisplay ("You are near the sidewalk.");
+              document.getElementById("btnNorth").disabled = false;
+              document.getElementById("btnSouth").disabled = false;
+              document.getElementById("btnEast").disabled = true;
+              document.getElementById("btnWest").disabled = true;
+           } else if (currentLocation==3){
+              currentLocation=0;
+              updateDisplay ("You are at the bus stop.");
+              document.getElementById("btnNorth").disabled = false;
+                  document.getElementById("btnSouth").disabled = false;
+                  document.getElementById("btnEast").disabled = false;
+                  document.getElementById("btnWest").disabled = false;
+           } else if (currentLocation==0){
+              currentLocation=1;
+              updateDisplay ("You are at the oak tree.");
+              document.getElementById("btnNorth").disabled = true;
+              document.getElementById("btnSouth").disabled = false;
+              document.getElementById("btnEast").disabled = true;
+              document.getElementById("btnWest").disabled = true;
+           }
+           updateDisplay("moving north");
+        } else if (direction===SOUTH) {
+           if (currentLocation==1){
+              currentLocation=0;
+              updateDisplay("You are at the bus stop.");
+              document.getElementById("btnNorth").disabled = false;
+              document.getElementById("btnSouth").disabled = false;
+              document.getElementById("btnEast").disabled = false;
+              document.getElementById("btnWest").disabled = false;
+           }else if (currentLocation==0){
+              currentLocation=3;
+              updateDisplay("You are near the sidewalk.");
+              document.getElementById("btnNorth").disabled = false;
+              document.getElementById("btnSouth").disabled = false;
+              document.getElementById("btnEast").disabled = true;
+              document.getElementById("btnWest").disabled = true;
+           }else if (currentLocation==3){
+              currentLocation=5;
+              updateDisplay("You crossed the street at the corner.");
+              document.getElementById("btnNorth").disabled = false;
+              document.getElementById("btnSouth").disabled = true;
+              document.getElementById("btnEast").disabled = true;
+              document.getElementById("btnWest").disabled = true;
+           }
+              updateDisplay("moving south");
+        } else if (direction===EAST){
+           if (currentLocation==4){
+              currentLocation=0;
+              updateDisplay("You are at the bus stop.");
+              document.getElementById("btnNorth").disabled = false;
+              document.getElementById("btnSouth").disabled = false;
+              document.getElementById("btnEast").disabled = false;
+              document.getElementById("btnWest").disabled = false;
+           }else if (currentLocation==0){
+              currentLocation=2;
+              updateDisplay("You have found a cape on the ground.");
+              document.getElementById("btnNorth").disabled = true;
+              document.getElementById("btnSouth").disabled = true;
+              document.getElementById("btnEast").disabled = true;
+              document.getElementById("btnWest").disabled = false;
+           }
+              updateDisplay("moving east");
+              
+         } else if (direction===WEST){
+            if (currentLocation==2){
+                currentLocation=0;
+                updateDisplay("You are at the bus stop.");
+                document.getElementById("btnNorth").disabled = false;
+                document.getElementById("btnSouth").disabled = false;
+                document.getElementById("btnEast").disabled = false;
+                document.getElementById("btnWest").disabled = false;
+                
+           }else if (currentLocation==0){
+              currentLocation=4;
+              updateDisplay("You are now hiding behind a dumpster.");
+              document.getElementById("btnNorth").disabled = true;
+              document.getElementById("btnSouth").disabled = true;
+              document.getElementById("btnEast").disabled = false;
+              document.getElementById("btnWest").disabled = true;
+           }
+              updateDisplay("moving west");
+        }
+      }
+      
+      function updateDisplay(msg) {
+        msg=msg +"[" + currentLocation +"]";
+        var ta= document.getElementById("taGame");
+        ta.value= msg + "\n" + ta.value;
+      }
+
+      function btn_go_click() {
+        var userInput= document.getElementById("txtInput").value;
+        alert(userInput);
+        if (userInput==="n" || userInput==="N") {
+            move(NORTH);
+        } else if (userInput==="s" || userInput==="S") {
+            move(SOUTH);
+        } else if (userInput==="e" || userInput==="E") {
+            move(EAST);
+        } else if (userInput==="w" || userInput==="W") {
+            move(WEST);
+        } else {
+            updateDisplay ("Invalid Command. Valid commands are 'N, n, S, s, W, w, E, e.'");
+        }
+      } 
+
+    </script>
+  </head>
+    <body>
+      <h1>THE GREAT ESCAPE!</h1>
+    <br>
+      <h2>Welcome to my adventure game. 
+	    Today is the first day of kindergarten 
+	    and your character Johnny does not want to go. 
+	    What will you do to try and get away? 
+	    Let's find out if you can make 
+	    'The Great Escape!'</h2>
+
+    <br>
+      <textarea id="taGame" rows="8" cols="40">You are standing on the porch in front of your house.
+      </textarea>
+      
+    <br>
+
+      <input type="text" id="txtInput">
+
+      <input type="button"
+             value="Go"
+             onclick="btn_go_click();">
+
+    <br> 
+       <input type= "button"
+             value= "score"
+             onclick= "btn();">
+
+      <input type= "button"
+             value= "NORTH"
+             onclick= "move(NORTH);"
+             id="btnNorth">
+
+      <input type= "button"
+             value= "SOUTH"
+             onclick= "move(SOUTH);"
+             id="btnSouth">
+
+      <input type= "button"
+             value= "EAST"
+             onclick= "move(EAST);"
+             id="btnEast">
+
+      <input type= "button"
+             value= "WEST"
+             onclick= "move(WEST);"
+             id="btnWest">
+    <br>
+
+      <p>Email me
+    	     <a href="mailto:missy.rovereto@gmail.com">here</a>
+      </p>
+    </body>
+</html>
