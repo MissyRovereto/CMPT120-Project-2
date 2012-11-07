@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+  <!-- Marisa Rovereto
+     Introduction to Programming
+     November 7, 2012
+     Project 4 - My Adventure Game -->
+ 
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>The Great Escape</title>
+    <style>
+      body {background:#A86483;}
+      h1 {font-family:"elephant";color:black;background-color:white;}
+      h2 {font-family:"comic_sans";color:orange;}
+      textarea {font-family:"times_new_roman";color:white;background-color:black;}
+      p {color:orange;}
+      a {color: white;}
+    </style>
+    <img src= "gamemap.png" name="My Picture" title="Map" alt="gamemap.png"/>
+    <script type="text/JavaScript" src="navigationproject4.js"> </script>
+    <script type="text/JavaScript" src="locationsproject4.js"> </script>
+    <script type="text/JavaScript" src="gamelogicproject4.js"> </script>
+    <script type="text/JavaScript">
+      
+      function updateDisplay(msg) {
+        msg= msg +"["+ currentLocation +"]";
+        var ta= document.getElementById("taGame");
+        ta.value= msg + "\n" + ta.value;
+      }
+
+      function btn_go_click() {
+        var userInput= document.getElementById("txtInput").value;
+        
+        if (userInput==="n" || userInput==="N") {
+            move(NORTH);
+        } else if (userInput==="s" || userInput==="S") {
+            move(SOUTH);
+        } else if (userInput==="e" || userInput==="E") {
+            move(EAST);
+        } else if (userInput==="w" || userInput==="W") {
+            move(WEST);
+        } else {
+            updateDisplay("Invalid Command. Valid commands are 'N, n, S, s, W, w, E, e.'");
+        }
+      } 
+      
+    </script>
+  </head>
+    <body onload = "init();">
+     
+      <h1>THE GREAT ESCAPE!</h1>
+    <br> 
+      <h2>Welcome to my adventure game. 
+	    Today is the first day of kindergarten 
+	    and your character Johnny does not want to go. 
+	    What will you do to try and get away? 
+	    Let's find out if you can make 
+	    'The Great Escape!'</h2>
+
+    <br>
+      <textarea id="taGame" rows="8" cols="40"></textarea>
+      
+    <br>
+
+      <input type="text" id="txtInput">
+
+      <input type="button"
+             value="Go"
+             onclick="btn_go_click();">
+
+    <br>
+      <input type= "button"
+             value= "Help"
+             onclick= "help();"> 
+     
+      <input type= "button"
+              value= "score"
+              onclick= "btn();">
+
+      <input type= "button"
+             value= "NORTH"
+             onclick= "move(NORTH);"
+             id="btnNorth">
+
+      <input type= "button"
+             value= "SOUTH"
+             onclick= "move(SOUTH);"
+             id="btnSouth">
+
+      <input type= "button"
+             value= "EAST"
+             onclick= "move(EAST);"
+             id="btnEast">
+
+      <input type= "button"
+             value= "WEST"
+             onclick= "move(WEST);"
+             id="btnWest">
+             
+      <input type= "button"
+             value= "Display Inventory"
+             onclick= "displayInventory();">
+    <br>
+
+      <p>Email me
+    	     <a href="mailto:missy.rovereto@gmail.com">here</a>
+      </p>
+    </body>
+</html>
